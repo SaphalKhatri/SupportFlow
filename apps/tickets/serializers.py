@@ -7,14 +7,35 @@ class UserBriefSerializer(serializers.Serializer):
     email= serializer.EmailField(read_only=True)
     role= serializer.CharField(read_only=True)
 
-class TicketListSerializer(serializers.Serializer):
+class TicketListSerializer(serializers.ModelSerializer):
     creator= UserBriefSerializer(read_only=True)
     assigned_agent=UserBriefSerializer(read_only=True)
     class Meta:
          model= Ticket
          fields=['id','ticket_number','title','category','priority','status','creator','assigned_agent','created_at','updated_at','resolved_at',]
 
-class TicketCreateSerializer(serializers.Serializer):
+class TicketDetailSerializer(serializers.ModelSerializer):
+    ccreator= UserBriefSerializer(read_only=True)
+    assigned_agent=UserBriefSerializer(read_only=True)
+    class Meta:
+        model=Ticket
+         fields = [
+            'id',
+            'ticket_number',
+            'title',
+            'description',
+            'category',
+            'priority',
+            'status',
+            'creator',
+            'assigned_agent',
+            'created_at',
+            'updated_at',
+            'resolved_at',
+        ]
+
+
+class TicketCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model=Ticket
         fields=['id','ticket_number','title','description','category','priority']

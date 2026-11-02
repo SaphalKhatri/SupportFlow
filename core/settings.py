@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'apps.apps.AppsConfig',
+    'apps.tickets.apps.TicketsConfig',
 ]
 
 MIDDLEWARE = [
