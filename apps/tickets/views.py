@@ -27,5 +27,5 @@ class TicketView(viewsets.ModelViewset):
         user= self.request.user
         if user.role=='customer' and not user.is_staff:
             if 'status' in serializer.validated_data or 'assigned_agent' in serializer.validated_data:
-                raise serializer.ValidationError("customer vannot change ticket status or assignemnt")\
+                raise serializer.ValidationError("customer cannot change ticket status or assignemnt")\
         serializer.save()
